@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Afficher les données météorologiques</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <h1>Données météorologiques</h1>
+    <% if (meteos.length > 0) { %>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nom de la ville</th>
+                    <th>Température (°C)</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% meteos.forEach(meteo => { %>
+                    <tr>
+                        <td><%= meteo.nom %></td>
+                        <td><%= meteo.temp %></td>
+                        <td><%= meteo.description %></td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    <% } else { %>
+        <p>Aucune donnée météorologique n'est disponible.</p>
+    <% } %>
+</body>
+</html>

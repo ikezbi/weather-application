@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Météo</title>
+    <style>
+        .ville {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Météo</h1>
+    <form action="/meteo" method="GET">
+        <button type="submit">Afficher les données météorologiques</button>
+    </form>
+    <table>
+        <thead>
+            <tr>
+                <th>Ville</th>
+                <th>Température (°C)</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% villes.forEach(ville => { %>
+                <tr>
+                    <td><%= ville.nom %></td>
+                    <td><%= ville.temp %> °C</td>
+                    <td><%= ville.description %></td>
+                    <td>
+                        <form action="/stocker" method="POST">
+                            <input type="hidden" name="nom" value="<%= ville.nom %>">
+                            <input type="hidden" name="temp" value="<%= ville.temp %>">
+                            <input type="hidden" name="description" value="<%= ville.description %>">
+                            <button type="submit">Stocker</button>
+                        </form>
+                    </td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+</body>
+</html>
